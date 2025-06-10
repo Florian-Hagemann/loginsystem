@@ -2,6 +2,9 @@ package loginsystem;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 import javax.swing.*;
 
@@ -64,7 +67,7 @@ public class GUI extends JFrame {
 		f.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		// setup Layoutmanager
-		f.setLayout(new GridLayout(7, 1, 2, 2));
+		f.setLayout(new GridLayout(8, 1, 2, 2));
 		
 		// Setting frame to be visible
 		f.setVisible(true);
@@ -80,7 +83,36 @@ public class GUI extends JFrame {
 		
 		f.add(fieldPassword);
 		
+		buttonLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(Main.login(fieldName.getText(), fieldPassword.getText())) {
+					
+					showMessageDialog(null, "Loged in!\nHello, " + fieldName.getText() + ".");
+					
+				} else {
+					
+					showMessageDialog(null, "Password or username incorrect");
+					
+				}
+				
+			}
+			
+		});
 		f.add(buttonLogin);
+		buttonSignIn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(Main.signin(fieldName.getText(), fieldPassword.getText())) {
+					showMessageDialog(null, "Signed in succesfully!");
+				} else {
+					showMessageDialog(null, "Username already exists!");
+				}
+			}
+			
+		});
 		f.add(buttonSignIn);
 		
 	}

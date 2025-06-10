@@ -52,5 +52,14 @@ public class FileIO {
 		return output;
 		
 	}
+
+	public static boolean exists(String name) {
+		File inputFile = new File(name + ".txt");
+		if(inputFile.isFile()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }

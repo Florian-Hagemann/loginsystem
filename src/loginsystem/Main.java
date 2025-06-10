@@ -16,24 +16,31 @@ public class Main {
 		
 		GUI e;
 		e = new GUI("e", 320, 180);
-		login("flo", "1234");
 		
 	}
 	
 	// SignIn logic
-	public static void signin(String name, String password) {
+	public static boolean signin(String name, String password) {
+		if(FileIO.exists(name)) {
+			return false;
+		}
 		FileIO.output(name, password);
+		return true;
 		
 	}
 	
 	// Login logic
 	public static boolean login(String name, String password) {
-		if(password.equals(FileIO.input(name))) {
-			return true;
+		try {
+			if(password.equals(FileIO.input(name))) {
+				return true;
+				
+			}
 			
+			return false;
+		} catch(Exception e) {
+			return false;
 		}
-		
-		return false;
 		
 	}
 

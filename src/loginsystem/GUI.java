@@ -91,6 +91,10 @@ public class GUI extends JFrame {
 					
 					showMessageDialog(null, "Loged in!\nHello, " + fieldName.getText() + ".");
 					
+				} else {
+					
+					showMessageDialog(null, "Password or username incorrect");
+					
 				}
 				
 			}
@@ -101,7 +105,11 @@ public class GUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.signin(fieldName.getText(), fieldPassword.getText());
+				if(Main.signin(fieldName.getText(), fieldPassword.getText())) {
+					showMessageDialog(null, "Signed in succesfully!");
+				} else {
+					showMessageDialog(null, "Username already exists!");
+				}
 			}
 			
 		});
